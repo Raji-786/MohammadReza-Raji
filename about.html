@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    
+    <!-- ============================================================
+    META TAGS - SEO
+    ============================================================ -->
+    <title>درباره من | محمدرضا راجی</title>
+    <meta name="description" content="درباره محمدرضا راجی، توسعه‌دهنده نرم‌افزار، متخصص هوش مصنوعی، رباتیک، اینترنت اشیا و سیستم‌های نهفته" />
+    <meta name="keywords" content="محمدرضا راجی, MohammadReza Raji, برنامه‌نویس, توسعه‌دهنده نرم‌افزار, هوش مصنوعی, رباتیک" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://rajj-786.github.io/about.html" />
+    <meta name="author" content="محمدرضا راجی" />
+    <meta name="language" content="fa" />
+    
+    <!-- ============================================================
+    FAVICON
+    ============================================================ -->
+    <link rel="icon" type="image/png" sizes="32x32" href="تصاویر/icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="تصاویر/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="تصاویر/icon.png">
+    <meta name="theme-color" content="#0F172A">
+    
+    <!-- ============================================================
+    OPEN GRAPH
+    ============================================================ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="درباره من | محمدرضا راجی" />
+    <meta property="og:description" content="درباره محمدرضا راجی، توسعه‌دهنده نرم‌افزار، متخصص هوش مصنوعی، رباتیک، اینترنت اشیا و سیستم‌های نهفته" />
+    <meta property="og:url" content="https://rajj-786.github.io/about.html" />
+    <meta property="og:site_name" content="محمدرضا راجی | وب‌سایت رسمی" />
+    <meta property="og:locale" content="fa_IR" />
+    <meta property="og:image" content="https://rajj-786.github.io/تصاویر/logo%20main.png" />
+    
+    <!-- ============================================================
+    FONTS
+    ============================================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Estedad:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', 'Vazir', 'Estedad', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #ffffff;
+            color: #334155;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            padding-top: 72px;
+        }
+
+        /* ============================================================
+           HEADER / NAVBAR (EXACTLY FROM INDEX.HTML)
+           ============================================================ */
+        .main-header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+            padding: 8px 20px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .main-header.scrolled {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .header-logo img {
+            height: auto;
+            max-height: 50px;
+            width: auto;
+            max-width: 220px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li a {
+            font-family: 'Vazirmatn', 'Vazir', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #475569;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 40px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            letter-spacing: -0.01em;
+        }
+
+        .nav-menu li a:hover {
+            background: rgba(37, 99, 235, 0.06);
+            color: #2563eb;
+        }
+
+        .nav-menu li a.active {
+            background: rgba(37, 99, 235, 0.08);
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .panel-btn {
+            font-family: 'Vazirmatn', 'Vazir', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #2563eb;
+            border: none;
+            padding: 7px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+        }
+
+        .panel-btn:hover {
+            background: #1d4ed8;
+            box-shadow: 0 8px 24px -8px rgba(37, 99, 235, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .panel-btn .icon {
+            font-size: 16px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 6px 4px;
+            border: none;
+            background: none;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+            order: -1;
+            z-index: 1002;
+            position: relative;
+        }
+
+        .hamburger:hover {
+            background: rgba(37, 99, 235, 0.04);
+        }
+
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: #0f172a;
+            border-radius: 4px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ============================================================
+           MOBILE MENU - Off Canvas
+           ============================================================ */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .mobile-menu-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 320px;
+            max-width: 85%;
+            background: #ffffff;
+            z-index: 1001;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            padding: 24px 20px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu-panel.open {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+        }
+
+        .mobile-menu-header .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #0f172a;
+            padding: 4px 8px;
+            line-height: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu-header .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .mobile-menu-header .menu-title {
+            font-family: 'Estedad', 'Vazirmatn', 'Vazir', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .mobile-menu-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .mobile-menu-list li a {
+            font-family: 'Vazirmatn', 'Vazir', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            color: #334155;
+            text-decoration: none;
+            padding: 14px 16px;
+            border-radius: 14px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-list li a:hover,
+        .mobile-menu-list li a.active {
+            background: rgba(37, 99, 235, 0.06);
+            color: #2563eb;
+        }
+
+        .mobile-menu-list .panel-btn-mobile {
+            margin-top: 12px;
+        }
+
+        .mobile-menu-list .panel-btn-mobile a {
+            background: #2563eb;
+            color: #ffffff !important;
+            text-align: center;
+            font-weight: 600;
+            padding: 14px 20px;
+            border-radius: 40px;
+        }
+
+        .mobile-menu-list .panel-btn-mobile a:hover {
+            background: #1d4ed8;
+        }
+
+        /* ============================================================
+           RESPONSIVE - HEADER
+           ============================================================ */
+        @media (max-width: 850px) {
+            .nav-menu { display: none !important; }
+            .hamburger { display: flex !important; }
+            .header-logo img { max-height: 38px; max-width: 140px; }
+            .main-header { padding: 6px 16px; height: 64px; }
+            body { padding-top: 64px !important; }
+            .header-left .panel-btn { display: none; }
+            .mobile-menu-list .panel-btn-mobile { display: block; }
+        }
+
+        .mobile-menu-list .panel-btn-mobile { display: none; }
+
+        @media (max-width: 480px) {
+            .header-logo img { max-height: 32px; max-width: 110px; }
+            .main-header { height: 56px; padding: 4px 12px; }
+            body { padding-top: 56px !important; }
+            .hamburger span { width: 22px; height: 2px; }
+            .hamburger { gap: 4px; padding: 4px 2px; }
+            .mobile-menu-panel { width: 280px; padding: 20px 16px 24px; }
+        }
+
+        @media (max-width: 360px) {
+            .header-logo img { max-height: 28px; max-width: 90px; }
+            .main-header { height: 50px; padding: 4px 10px; }
+            body { padding-top: 50px !important; }
+            .hamburger span { width: 18px; height: 2px; }
+            .hamburger { gap: 3px; padding: 3px 2px; }
+            .mobile-menu-panel { width: 250px; padding: 16px 14px 20px; }
+            .mobile-menu-list li a { font-size: 16px; padding: 12px 14px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .mobile-menu-panel { transition: none !important; }
+            .mobile-menu-overlay { transition: none !important; }
+        }
+
+        /* ============================================================
+           ABOUT PAGE CONTENT (UNCHANGED - EXACTLY AS PROVIDED)
+           ============================================================ */
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .page-header {
+            margin-bottom: 3.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: right;
+            gap: 1.2rem;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(37, 99, 235, 0.12);
+            border-radius: 100px;
+            padding: 0.6rem 2.2rem 0.6rem 2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #1e293b;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(255,255,255,0.5) inset;
+            transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
+            user-select: none;
+        }
+
+        .section-badge svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: #2563EB;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.4s ease;
+        }
+
+        .section-badge:hover {
+            background: rgba(37, 99, 235, 0.04);
+            border-color: rgba(37, 99, 235, 0.2);
+            box-shadow: 0 8px 20px -8px rgba(37, 99, 235, 0.08), 0 0 0 1px rgba(255,255,255,0.6) inset;
+            transform: translateY(-1px);
+        }
+
+        .section-badge:hover svg {
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        .section-title {
+            font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+            font-weight: 650;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            right: 0;
+            width: 36px;
+            height: 3px;
+            background: #2563eb;
+            border-radius: 4px;
+            opacity: 0.3;
+            transition: width 0.4s ease;
+        }
+
+        .section-title:hover::after {
+            width: 56px;
+            opacity: 0.5;
+        }
+
+        .section-spacer {
+            margin: 3.5rem 0 2rem;
+        }
+
+        .bio-text {
+            font-size: 1rem;
+            color: #334155;
+            line-height: 2;
+            max-width: 780px;
+        }
+
+        .bio-text p {
+            margin-bottom: 1.2rem;
+        }
+
+        .vision-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 24px;
+            padding: 2rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px -8px rgba(15, 23, 42, 0.02);
+            transition: all 0.4s ease;
+            max-width: 780px;
+        }
+
+        .vision-card:hover {
+            box-shadow: 0 12px 36px -12px rgba(37, 99, 235, 0.04);
+            border-color: rgba(37, 99, 235, 0.06);
+        }
+
+        .vision-card p {
+            font-size: 1rem;
+            color: #334155;
+            line-height: 2;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+            max-width: 780px;
+        }
+
+        .process-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 20px;
+            padding: 1.6rem 1.2rem 1.6rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 2px 12px -6px rgba(15, 23, 42, 0.02);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
+        }
+
+        .process-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px -12px rgba(37, 99, 235, 0.06);
+            border-color: rgba(37, 99, 235, 0.08);
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .process-step {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.06);
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 0.7rem;
+            transition: all 0.4s ease;
+        }
+
+        .process-card:hover .process-step {
+            background: #2563eb;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .process-card h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.2rem;
+        }
+
+        .process-card p {
+            font-size: 0.82rem;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .contact-wrapper {
+            margin-top: 3.5rem;
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-heading {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 1.8rem;
+            letter-spacing: -0.01em;
+            position: relative;
+        }
+
+        .contact-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 30px;
+            height: 2px;
+            background: #2563eb;
+            border-radius: 4px;
+            opacity: 0.25;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .contact-circle {
+            width: 68px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px -8px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .contact-item:hover .contact-circle {
+            transform: scale(1.08) translateY(-4px);
+            background: rgba(37, 99, 235, 0.04);
+            border-color: rgba(37, 99, 235, 0.12);
+            box-shadow: 0 12px 32px -12px rgba(37, 99, 235, 0.08), 0 0 0 4px rgba(37, 99, 235, 0.02);
+        }
+
+        .contact-label {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #64748b;
+            transition: color 0.3s ease;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        .contact-item:hover .contact-label {
+            color: #2563eb;
+        }
+
+        /* ============================================================
+           RESPONSIVE - ABOUT CONTENT
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .about-container { padding: 1.8rem 1.2rem 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .about-container { padding: 1.2rem 0.8rem 2.5rem; }
+            .page-header { margin-bottom: 2.5rem; align-items: center; text-align: center; }
+            .section-spacer { margin: 2.8rem 0 1.5rem; }
+            .vision-card { padding: 1.5rem 1.5rem; }
+            .process-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .process-card { padding: 1.2rem 1rem; }
+            .contact-grid { gap: 2rem; }
+            .contact-circle { width: 60px; height: 60px; font-size: 1.6rem; }
+            .section-badge { font-size: 0.85rem; padding: 0.5rem 1.8rem 0.5rem 1.6rem; }
+            .section-badge svg { width: 16px; height: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .about-container { padding: 0.8rem 0.5rem 2rem; }
+            .page-header { align-items: center; text-align: center; }
+            .section-badge { font-size: 0.8rem; padding: 0.45rem 1.5rem 0.45rem 1.3rem; }
+            .section-badge svg { width: 15px; height: 15px; }
+            .bio-text { font-size: 0.92rem; }
+            .bio-text p { margin-bottom: 0.8rem; }
+            .process-grid { grid-template-columns: 1fr; }
+            .contact-grid { gap: 1.5rem; }
+            .contact-circle { width: 54px; height: 54px; font-size: 1.4rem; }
+            .contact-label { font-size: 0.7rem; }
+            .contact-heading { font-size: 1rem; }
+        }
+
+        @media (max-width: 360px) {
+            .contact-grid { gap: 1.2rem; }
+            .contact-circle { width: 48px; height: 48px; font-size: 1.2rem; }
+            .section-badge { font-size: 0.7rem; padding: 0.4rem 1.2rem 0.4rem 1rem; }
+            .section-badge svg { width: 13px; height: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER / NAVBAR - EXACTLY FROM INDEX.HTML
+    ============================================================ -->
+    <header class="main-header" id="mainHeader" role="banner" aria-label="سربرگ اصلی سایت">
+        <div class="header-logo">
+            <img src="تصاویر/logo%20main.png" alt="لوگوی محمدرضا راجی" width="220" height="50" loading="eager" decoding="async" />
+        </div>
+
+        <div class="header-left">
+            <nav aria-label="منوی اصلی سایت">
+                <ul class="nav-menu" id="navMenu" role="menubar">
+                    <li role="none"><a href="index.html" role="menuitem">خانه</a></li>
+                    <li role="none"><a href="projects.html" role="menuitem">پروژه‌ها</a></li>
+                    <li role="none"><a href="about.html" role="menuitem" class="active" aria-current="page">درباره من</a></li>
+                </ul>
+            </nav>
+
+            <a href="#" class="panel-btn" aria-label="ورود به پنل کاربری">
+                <span class="icon" aria-hidden="true">👤</span> پنل کاربری
+            </a>
+
+            <button class="hamburger" id="hamburgerBtn" aria-label="باز و بسته کردن منوی موبایل" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    MOBILE MENU - Off Canvas
+    ============================================================ -->
+    <div class="mobile-menu-overlay" id="mobileOverlay" role="presentation"></div>
+    <nav class="mobile-menu-panel" id="mobilePanel" role="navigation" aria-label="منوی موبایل">
+        <div class="mobile-menu-header">
+            <span class="menu-title">منو</span>
+            <button class="close-btn" id="closeMenuBtn" aria-label="بستن منو">✕</button>
+        </div>
+        <ul class="mobile-menu-list" role="menubar">
+            <li role="none"><a href="index.html" role="menuitem">خانه</a></li>
+            <li role="none"><a href="projects.html" role="menuitem">پروژه‌ها</a></li>
+            <li role="none"><a href="about.html" role="menuitem" class="active" aria-current="page">درباره من</a></li>
+            <li role="none" class="panel-btn-mobile">
+                <a href="#" role="menuitem"><span class="icon" aria-hidden="true">👤</span> پنل کاربری</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- ============================================================
+    ABOUT PAGE CONTENT (UNCHANGED)
+    ============================================================ -->
+    <main id="main-content" role="main">
+        <div class="about-container">
+
+            <!-- PAGE HEADER -->
+            <header class="page-header">
+                <span class="section-badge">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                        <path d="M2 17l10 5 10-5" />
+                        <path d="M2 12l10 5 10-5" />
+                    </svg>
+                    درباره من
+                </span>
+            </header>
+
+            <!-- INTRO -->
+            <div class="bio-text">
+                <p>
+                    من محمدرضا راجی هستم؛ توسعه‌دهنده نرم‌افزار و علاقه‌مند به فناوری‌های نوین. از دوران نوجوانی، برنامه‌نویسی و الکترونیک بخش بزرگی از زندگی من شدند و این مسیر را به عنوان یک حرفه جدی ادامه دادم.
+                </p>
+                <p>
+                    حوزه‌های اصلی فعالیت من شامل توسعه نرم‌افزار با پایتون، هوش مصنوعی، طراحی وب، توسعه اپلیکیشن‌های اندروید، الکترونیک، رباتیک و اینترنت اشیا است. من به ترکیب دانش نرم‌افزاری با سخت‌افزار علاقه دارم و از ساختن پروژه‌هایی که مرزهای فناوری را جابجا می‌کنند، لذت می‌برم.
+                </p>
+                <p>
+                    برای من یادگیری پایانی ندارد. هر روز فرصتی است برای کشف تکنولوژی‌های جدید، بهبود مهارت‌ها و ارتقای کیفیت کار. اعتقاد دارم که بهترین راه برای رشد، اجرای پروژه‌های واقعی و مواجهه با چالش‌های عملی است.
+                </p>
+            </div>
+
+            <!-- VISION -->
+            <div class="section-spacer">
+                <h2 class="section-title">چشم‌انداز من</h2>
+            </div>
+
+            <div class="vision-card">
+                <p>
+                    هدف من ساختن سیستم‌های هوشمند و نرم‌افزارهای نوآورانه‌ای است که بتوانند زندگی انسان‌ها را آسان‌تر، کارآمدتر و هوشمندتر کنند. من به آینده‌ای اعتقاد دارم که در آن تکنولوژی به عنوان ابزاری برای حل چالش‌های واقعی و ارتقای کیفیت زندگی به کار گرفته می‌شود. مسیر من، تلفیق دانش نرم‌افزار و سخت‌افزار برای خلق راهکارهای مهندسی مدرن است.
+                </p>
+            </div>
+
+            <!-- WORK PROCESS -->
+            <div class="section-spacer">
+                <h2 class="section-title">نحوه انجام پروژه‌ها</h2>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="process-step">۱</div>
+                    <h4>تحلیل نیازها</h4>
+                    <p>شناسایی دقیق نیازها و اهداف پروژه</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step">۲</div>
+                    <h4>طراحی راهکار</h4>
+                    <p>معماری نرم‌افزار و انتخاب تکنولوژی‌ها</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step">۳</div>
+                    <h4>پیاده‌سازی</h4>
+                    <p>توسعه کد با کیفیت و تست مستمر</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step">۴</div>
+                    <h4>بهبود و توسعه</h4>
+                    <p>بهینه‌سازی و افزودن قابلیت‌های جدید</p>
+                </div>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="contact-wrapper">
+                <span class="contact-heading">راه‌های ارتباطی</span>
+                <div class="contact-grid">
+                    <a href="tel:09183094275" class="contact-item" aria-label="تماس با من">
+                        <span class="contact-circle">📞</span>
+                        <span class="contact-label">تماس</span>
+                    </a>
+                    <a href="mailto:raji.tech.ai.101@gmail.com" class="contact-item" aria-label="ارسال ایمیل">
+                        <span class="contact-circle">✉️</span>
+                        <span class="contact-label">ایمیل</span>
+                    </a>
+                    <a href="https://eitaa.com/Raji_786" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="پیام در ایتا">
+                        <span class="contact-circle">💬</span>
+                        <span class="contact-label">ایتا</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ============================================================
+    SCRIPTS - MOBILE MENU
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            const mobilePanel = document.getElementById('mobilePanel');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+            function openMenu() {
+                mobilePanel.classList.add('open');
+                mobileOverlay.classList.add('active');
+                hamburgerBtn.classList.add('active');
+                hamburgerBtn.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                mobilePanel.classList.remove('open');
+                mobileOverlay.classList.remove('active');
+                hamburgerBtn.classList.remove('active');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            if (hamburgerBtn) {
+                hamburgerBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (mobilePanel.classList.contains('open')) {
+                        closeMenu();
+                    } else {
+                        openMenu();
+                    }
+                });
+            }
+
+            if (closeMenuBtn) {
+                closeMenuBtn.addEventListener('click', closeMenu);
+            }
+
+            if (mobileOverlay) {
+                mobileOverlay.addEventListener('click', closeMenu);
+            }
+
+            document.querySelectorAll('.mobile-menu-list a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobilePanel.classList.contains('open')) {
+                    closeMenu();
+                }
+            });
+
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>
