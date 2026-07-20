@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://raji-786.github.io/MohammadReza-Raji/sitemap.xml
