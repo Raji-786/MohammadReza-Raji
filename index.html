@@ -456,7 +456,7 @@
         }
 
         /* ============================================================
-           SLIDER
+           SLIDER - ULTRA PREMIUM CINEMATIC
            ============================================================ */
         .hero-slider {
             width: 100%;
@@ -474,6 +474,8 @@
             width: 100%;
             aspect-ratio: 21 / 9;
             min-height: 400px;
+            cursor: pointer;
+            touch-action: none;
         }
 
         .slider-wrapper {
@@ -511,6 +513,9 @@
             z-index: 2;
         }
 
+        /* ============================================================
+           CINEMATIC KEYFRAMES - 20 EFFECTS
+           ============================================================ */
         @keyframes cinematic-zoom-in {
             0% { transform: translateZ(0) scale(1.08); }
             100% { transform: translateZ(0) scale(1.23); }
@@ -572,7 +577,30 @@
             0% { transform: translateZ(0) scale(1.20) translate(0, -5%); }
             100% { transform: translateZ(0) scale(1.10) translate(0, 5%); }
         }
+        @keyframes cinematic-dolly-left {
+            0% { transform: translateZ(0) scale(1.08) translate(0, 0); }
+            100% { transform: translateZ(0) scale(1.18) translate(-5%, -2%); }
+        }
+        @keyframes cinematic-dolly-right {
+            0% { transform: translateZ(0) scale(1.08) translate(0, 0); }
+            100% { transform: translateZ(0) scale(1.18) translate(5%, -2%); }
+        }
+        @keyframes cinematic-micro-rotate {
+            0% { transform: translateZ(0) scale(1.12) translate(0, 0) rotate(0deg); }
+            100% { transform: translateZ(0) scale(1.12) translate(0, 0) rotate(0.8deg); }
+        }
+        @keyframes cinematic-push {
+            0% { transform: translateZ(0) scale(1.08) translate(0, 0); }
+            100% { transform: translateZ(0) scale(1.22) translate(-1%, -1%); }
+        }
+        @keyframes cinematic-pull {
+            0% { transform: translateZ(0) scale(1.22) translate(-1%, -1%); }
+            100% { transform: translateZ(0) scale(1.08) translate(0, 0); }
+        }
 
+        /* ============================================================
+           ANIMATION CLASSES
+           ============================================================ */
         .anim-zoom-in { animation: cinematic-zoom-in 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
         .anim-zoom-out { animation: cinematic-zoom-out 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
         .anim-pan-left { animation: cinematic-pan-left 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
@@ -588,7 +616,15 @@
         .anim-float { animation: cinematic-float 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
         .anim-crane-up { animation: cinematic-crane-up 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
         .anim-crane-down { animation: cinematic-crane-down 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        .anim-dolly-left { animation: cinematic-dolly-left 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        .anim-dolly-right { animation: cinematic-dolly-right 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        .anim-micro-rotate { animation: cinematic-micro-rotate 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        .anim-push { animation: cinematic-push 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+        .anim-pull { animation: cinematic-pull 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
 
+        /* ============================================================
+           TRANSFORM ORIGIN CLASSES
+           ============================================================ */
         .origin-center { transform-origin: center center; }
         .origin-top-left { transform-origin: 15% 15%; }
         .origin-top-right { transform-origin: 85% 15%; }
@@ -597,6 +633,9 @@
         .origin-center-left { transform-origin: 10% center; }
         .origin-center-right { transform-origin: 90% center; }
 
+        /* ============================================================
+           SLIDER DOTS
+           ============================================================ */
         .slider-dots {
             position: absolute;
             bottom: 28px;
@@ -610,6 +649,7 @@
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 30px;
+            pointer-events: auto;
         }
 
         .dot {
@@ -620,6 +660,9 @@
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             border: 2px solid rgba(255, 255, 255, 0.05);
+            pointer-events: auto;
+            position: relative;
+            z-index: 15;
         }
 
         .dot.active {
@@ -627,6 +670,11 @@
             border-color: #ffffff;
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
             transform: scale(1.3);
+        }
+
+        .dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.2);
         }
 
         /* ============================================================
@@ -1597,6 +1645,11 @@
             .project-featured .card-body { flex: 0 0 46%; padding: 1.75rem 1.5rem 1.75rem 1.75rem; }
             .project-featured .card-image-wrap { flex: 0 0 54%; min-height: 340px; }
             .project-featured .card-body h3 { font-size: 1.4rem; }
+
+            .slider-container { aspect-ratio: 21 / 10; border-radius: 24px; min-height: 350px; }
+            .slider-wrapper img { transform: translateZ(0) scale(1.06); }
+            .slider-dots { bottom: 22px; gap: 12px; padding: 6px 14px; }
+            .dot { width: 9px; height: 9px; }
         }
 
         @media (max-width: 850px) {
@@ -1907,7 +1960,10 @@
             .anim-zoom-in, .anim-zoom-out, .anim-pan-left, .anim-pan-right,
             .anim-pan-up, .anim-pan-down, .anim-diagonal-left, .anim-diagonal-right,
             .anim-push-in, .anim-pull-back, .anim-dolly, .anim-orbit,
-            .anim-float, .anim-crane-up, .anim-crane-down { animation-duration: 0.01ms !important; }
+            .anim-float, .anim-crane-up, .anim-crane-down,
+            .anim-dolly-left, .anim-dolly-right, .anim-micro-rotate, .anim-push, .anim-pull {
+                animation-duration: 0.01ms !important;
+            }
             .float-card--primary, .float-card--secondary { animation-duration: 0.01ms !important; }
             .project-card { animation: none !important; opacity: 1 !important; transform: none !important; }
             .mobile-menu-panel { transition: none !important; }
@@ -1974,7 +2030,7 @@
         HERO SLIDER SECTION - Semantic <section>
         ============================================================ -->
         <section class="hero-slider" aria-label="اسلایدر تصاویر hero">
-            <div class="slider-container">
+            <div class="slider-container" id="sliderContainer">
                 <div class="slider-wrapper" id="sliderWrapper">
                     <img id="layerA" class="layer active origin-center" src="تصاویر/home.webp" alt="تصویر hero - نمای کلی از مهارت‌های محمد‌رضا راجی در برنامه‌نویسی و مهندسی" width="1200" height="600" loading="eager" decoding="async" />
                     <img id="layerB" class="layer origin-center" src="تصاویر/homw2.webp" alt="تصویر hero دوم - محیط کاری و تخصص محمد‌رضا راجی در توسعه نرم‌افزار" width="1200" height="600" loading="lazy" decoding="async" />
@@ -2312,13 +2368,14 @@
             });
 
             // ============================================================
-            // SLIDER
+            // SLIDER - ULTRA PREMIUM CINEMATIC
             // ============================================================
             const CONFIG = {
                 crossFadeDuration: 1100,
                 initialPause: 400,
                 animationDuration: 6000,
                 holdAfterAnimation: 400,
+                autoPlayDelay: 3000,
             };
 
             const IMAGES = [
@@ -2331,40 +2388,274 @@
                 'anim-zoom-in', 'anim-zoom-out', 'anim-pan-left', 'anim-pan-right',
                 'anim-pan-up', 'anim-pan-down', 'anim-diagonal-left', 'anim-diagonal-right',
                 'anim-push-in', 'anim-pull-back', 'anim-dolly', 'anim-orbit',
-                'anim-float', 'anim-crane-up', 'anim-crane-down'
+                'anim-float', 'anim-crane-up', 'anim-crane-down', 'anim-dolly-left',
+                'anim-dolly-right', 'anim-micro-rotate', 'anim-push', 'anim-pull'
             ];
 
             const ORIGINS = [
                 'origin-center', 'origin-top-left', 'origin-top-right',
-                'origin-bottom-left', 'origin-bottom-right',
-                'origin-center-left', 'origin-center-right'
+                'origin-bottom-left', 'origin-bottom-right', 'origin-center-left',
+                'origin-center-right'
             ];
 
             const layerA = document.getElementById('layerA');
             const layerB = document.getElementById('layerB');
             const dotsContainer = document.getElementById('dotsContainer');
+            const sliderContainer = document.getElementById('sliderContainer');
 
-            if (!layerA || !layerB || !dotsContainer) return;
+            const state = {
+                currentIndex: 0,
+                activeLayer: layerA,
+                passiveLayer: layerB,
+                isTransitioning: false,
+                isPaused: false,
+                isInitialized: false,
+                timers: {
+                    autoplay: null,
+                    crossfade: null,
+                    effect: null,
+                    resume: null,
+                },
+                pendingTarget: null,
+                pendingManual: false,
+            };
 
-            let currentIndex = 0;
-            let activeLayer = layerA;
-            let passiveLayer = layerB;
-            let isTransitioning = false;
-            let isPaused = false;
-            let sliderTimer = null;
-            let animationTimer = null;
-            let pauseTimer = null;
-            let holdTimer = null;
+            function getRandomEffect() {
+                return EFFECTS[Math.floor(Math.random() * EFFECTS.length)];
+            }
+
+            function getRandomOrigin() {
+                return ORIGINS[Math.floor(Math.random() * ORIGINS.length)];
+            }
+
+            function getNextIndex() {
+                if (IMAGES.length <= 1) return 0;
+                if (IMAGES.length === 2) {
+                    return state.currentIndex === 0 ? 1 : 0;
+                }
+                let nextIndex = (state.currentIndex + 1) % IMAGES.length;
+                if (nextIndex === state.currentIndex) {
+                    nextIndex = (nextIndex + 1) % IMAGES.length;
+                }
+                return nextIndex;
+            }
+
+            function resetLayer(element) {
+                EFFECTS.forEach(cls => element.classList.remove(cls));
+                ORIGINS.forEach(cls => element.classList.remove(cls));
+                element.style.transform = 'translateZ(0) scale(1.08)';
+                element.style.transition = 'none';
+                void element.offsetHeight;
+            }
+
+            function clearAllTimers() {
+                const timers = state.timers;
+                clearTimeout(timers.autoplay);
+                clearTimeout(timers.crossfade);
+                clearTimeout(timers.effect);
+                clearTimeout(timers.resume);
+                timers.autoplay = null;
+                timers.crossfade = null;
+                timers.effect = null;
+                timers.resume = null;
+            }
+
+            function stopAutoplay() {
+                clearTimeout(state.timers.autoplay);
+                state.timers.autoplay = null;
+            }
+
+            function changeSlide(targetIndex, isManual = false) {
+                if (targetIndex < 0 || targetIndex >= IMAGES.length) return;
+                if (targetIndex === state.currentIndex) {
+                    if (isManual) {
+                        pauseSlider();
+                        setTimeout(() => resumeSlider(), 300);
+                    }
+                    return;
+                }
+
+                if (isManual) {
+                    clearAllTimers();
+                    state.isPaused = true;
+                    state.isTransitioning = false;
+                    resetLayer(state.activeLayer);
+                    resetLayer(state.passiveLayer);
+                    state.activeLayer.style.opacity = '1';
+                    state.activeLayer.classList.add('active');
+                    state.passiveLayer.style.opacity = '0';
+                    state.passiveLayer.classList.remove('active');
+                }
+
+                if (state.isTransitioning) {
+                    state.pendingTarget = targetIndex;
+                    state.pendingManual = isManual;
+                    return;
+                }
+
+                state.isTransitioning = true;
+                state.pendingTarget = null;
+                state.pendingManual = false;
+
+                const activeElement = state.activeLayer;
+                const passiveElement = state.passiveLayer;
+
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+
+                const completeTransition = () => {
+                    activeElement.style.transition = `opacity ${CONFIG.crossFadeDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+                    activeElement.style.opacity = '0';
+                    passiveElement.style.transition = `opacity ${CONFIG.crossFadeDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+                    passiveElement.style.opacity = '1';
+                    passiveElement.classList.add('active');
+
+                    state.timers.crossfade = setTimeout(() => {
+                        activeElement.classList.remove('active');
+                        activeElement.style.opacity = '0';
+                        const temp = state.activeLayer;
+                        state.activeLayer = state.passiveLayer;
+                        state.passiveLayer = temp;
+                        state.currentIndex = targetIndex;
+                        updateDots(state.currentIndex);
+
+                        const effect = getRandomEffect();
+                        applyCinematicEffect(state.activeLayer, effect);
+
+                        state.isTransitioning = false;
+
+                        if (state.pendingTarget !== null) {
+                            const pendingTarget = state.pendingTarget;
+                            const pendingManual = state.pendingManual;
+                            state.pendingTarget = null;
+                            state.pendingManual = false;
+                            changeSlide(pendingTarget, pendingManual);
+                            return;
+                        }
+
+                        if (!state.isPaused && state.isInitialized) {
+                            startAutoplay(CONFIG.autoPlayDelay);
+                        } else if (isManual) {
+                            state.timers.resume = setTimeout(() => {
+                                if (state.isPaused) {
+                                    resumeSlider();
+                                }
+                            }, 1000);
+                        }
+                    }, CONFIG.crossFadeDuration);
+                };
+
+                img.onload = function() {
+                    passiveElement.src = IMAGES[targetIndex];
+                    if (passiveElement.complete) {
+                        resetLayer(passiveElement);
+                        passiveElement.style.opacity = '1';
+                        completeTransition();
+                    } else {
+                        passiveElement.onload = function() {
+                            resetLayer(passiveElement);
+                            passiveElement.style.opacity = '1';
+                            completeTransition();
+                        };
+                    }
+                };
+
+                img.onerror = function() {
+                    passiveElement.src = IMAGES[targetIndex];
+                    passiveElement.onload = function() {
+                        resetLayer(passiveElement);
+                        passiveElement.style.opacity = '1';
+                        completeTransition();
+                    };
+                    if (passiveElement.complete) {
+                        resetLayer(passiveElement);
+                        passiveElement.style.opacity = '1';
+                        completeTransition();
+                    }
+                };
+
+                img.src = IMAGES[targetIndex];
+            }
+
+            function startAutoplay(delay = CONFIG.autoPlayDelay) {
+                if (state.isPaused || state.isTransitioning || !state.isInitialized) return;
+                stopAutoplay();
+                state.timers.autoplay = setTimeout(() => {
+                    if (!state.isPaused && !state.isTransitioning && state.isInitialized) {
+                        const nextIndex = getNextIndex();
+                        changeSlide(nextIndex, false);
+                    } else if (!state.isPaused && state.isInitialized) {
+                        startAutoplay(100);
+                    }
+                }, delay);
+            }
+
+            function pauseSlider() {
+                if (!state.isPaused) {
+                    state.isPaused = true;
+                    stopAutoplay();
+                    clearTimeout(state.timers.crossfade);
+                    clearTimeout(state.timers.effect);
+                    clearTimeout(state.timers.resume);
+                }
+            }
+
+            function resumeSlider() {
+                if (state.isPaused) {
+                    state.isPaused = false;
+                    clearTimeout(state.timers.resume);
+                    if (!state.isTransitioning && state.isInitialized) {
+                        startAutoplay(500);
+                    }
+                }
+            }
+
+            function manualGoTo(index) {
+                if (index === state.currentIndex) {
+                    pauseSlider();
+                    setTimeout(() => resumeSlider(), 300);
+                    return;
+                }
+                pauseSlider();
+                changeSlide(index, true);
+            }
+
+            function applyCinematicEffect(element, effectClass) {
+                EFFECTS.forEach(cls => element.classList.remove(cls));
+                ORIGINS.forEach(cls => element.classList.remove(cls));
+                element.style.transform = 'translateZ(0) scale(1.08)';
+                element.style.transition = 'none';
+                void element.offsetHeight;
+
+                const origin = getRandomOrigin();
+                element.classList.add(origin);
+
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        element.style.transition = '';
+                        element.classList.add(effectClass);
+                    });
+                });
+            }
 
             function buildDots() {
                 dotsContainer.innerHTML = '';
                 IMAGES.forEach((_, index) => {
                     const dot = document.createElement('span');
-                    dot.className = 'dot' + (index === currentIndex ? ' active' : '');
+                    dot.className = 'dot' + (index === state.currentIndex ? ' active' : '');
                     dot.dataset.index = index;
-                    dot.setAttribute('role', 'tab');
-                    dot.setAttribute('aria-label', 'اسلاید ' + (index + 1));
-                    dot.addEventListener('click', () => onDotClick(index));
+                    dot.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        const idx = parseInt(this.dataset.index);
+                        manualGoTo(idx);
+                    });
+                    dot.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const idx = parseInt(this.dataset.index);
+                        manualGoTo(idx);
+                    }, { passive: false });
                     dotsContainer.appendChild(dot);
                 });
             }
@@ -2376,254 +2667,153 @@
                 });
             }
 
-            function getRandomEffect() {
-                return EFFECTS[Math.floor(Math.random() * EFFECTS.length)];
-            }
+            // Touch Events
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let isSwiping = false;
+            let touchHandled = false;
 
-            function getRandomOrigin() {
-                return ORIGINS[Math.floor(Math.random() * ORIGINS.length)];
-            }
+            sliderContainer.addEventListener('touchstart', (e) => {
+                const touch = e.touches[0];
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+                isSwiping = false;
+                touchHandled = false;
+                pauseSlider();
+            }, { passive: true });
 
-            function getRandomImageIndex(except) {
-                let idx;
-                do { idx = Math.floor(Math.random() * IMAGES.length); } while (idx === except);
-                return idx;
-            }
-
-            function resetLayer(element) {
-                EFFECTS.forEach(cls => element.classList.remove(cls));
-                ORIGINS.forEach(cls => element.classList.remove(cls));
-                element.style.transform = 'translateZ(0) scale(1.08)';
-                element.style.transition = 'none';
-                void element.offsetHeight;
-            }
-
-            function applyCinematicEffect(element, effectClass) {
-                EFFECTS.forEach(cls => element.classList.remove(cls));
-                ORIGINS.forEach(cls => element.classList.remove(cls));
-                element.style.transform = 'translateZ(0) scale(1.08)';
-                element.style.transition = 'none';
-                void element.offsetHeight;
-                const origin = getRandomOrigin();
-                element.classList.add(origin);
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        element.style.transition = '';
-                        element.classList.add(effectClass);
-                    });
-                });
-            }
-
-            function swapLayers() {
-                const temp = activeLayer;
-                activeLayer = passiveLayer;
-                passiveLayer = temp;
-                activeLayer.classList.add('active');
-                passiveLayer.classList.remove('active');
-            }
-
-            function prepareNextImage(index) {
-                return new Promise((resolve) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        passiveLayer.src = IMAGES[index];
-                        passiveLayer.onload = () => {
-                            resetLayer(passiveLayer);
-                            passiveLayer.style.opacity = '1';
-                            resolve();
-                        };
-                        if (passiveLayer.complete) { passiveLayer.onload(); }
-                    };
-                    img.onerror = () => {
-                        passiveLayer.src = IMAGES[index];
-                        passiveLayer.onload = () => {
-                            resetLayer(passiveLayer);
-                            passiveLayer.style.opacity = '1';
-                            resolve();
-                        };
-                        if (passiveLayer.complete) { passiveLayer.onload(); }
-                    };
-                    img.src = IMAGES[index];
-                });
-            }
-
-            function performCrossFade() {
-                return new Promise((resolve) => {
-                    activeLayer.style.transition = `opacity ${CONFIG.crossFadeDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
-                    activeLayer.style.opacity = '0';
-                    passiveLayer.style.transition = `opacity ${CONFIG.crossFadeDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
-                    passiveLayer.style.opacity = '1';
-                    passiveLayer.classList.add('active');
-                    setTimeout(() => {
-                        activeLayer.classList.remove('active');
-                        activeLayer.style.opacity = '0';
-                        swapLayers();
-                        resolve();
-                    }, CONFIG.crossFadeDuration);
-                });
-            }
-
-            async function slideTo(nextIndex, effectClass) {
-                if (isTransitioning) return;
-                if (nextIndex === undefined) { nextIndex = getRandomImageIndex(currentIndex); }
-                if (effectClass === undefined) { effectClass = getRandomEffect(); }
-                isTransitioning = true;
-                clearAllTimers();
-                try {
-                    await prepareNextImage(nextIndex);
-                    await performCrossFade();
-                    currentIndex = nextIndex;
-                    updateDots(currentIndex);
-                    await new Promise((resolve) => { pauseTimer = setTimeout(resolve, CONFIG.initialPause); });
-                    applyCinematicEffect(activeLayer, effectClass);
-                    animationTimer = setTimeout(() => {
-                        holdTimer = setTimeout(() => {
-                            isTransitioning = false;
-                            if (!isPaused) { scheduleNextSlide(); }
-                        }, CONFIG.holdAfterAnimation);
-                    }, CONFIG.animationDuration);
-                } catch (error) {
-                    console.error('Error in slideTo:', error);
-                    isTransitioning = false;
+            sliderContainer.addEventListener('touchmove', (e) => {
+                if (!touchStartX) return;
+                const touch = e.touches[0];
+                const deltaX = touch.clientX - touchStartX;
+                const deltaY = touch.clientY - touchStartY;
+                if (Math.abs(deltaX) > 20 || Math.abs(deltaY) > 20) {
+                    isSwiping = true;
                 }
-            }
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
 
-            function scheduleNextSlide() {
-                if (isTransitioning || isPaused) {
-                    if (isTransitioning) {
-                        setTimeout(() => {
-                            if (!isTransitioning && !isPaused) { scheduleNextSlide(); }
-                        }, 100);
-                    }
+            sliderContainer.addEventListener('touchend', (e) => {
+                if (!touchStartX || !isSwiping || touchHandled) {
+                    resumeSlider();
+                    touchStartX = 0;
+                    touchStartY = 0;
+                    isSwiping = false;
                     return;
                 }
-                if (sliderTimer) { cancelAnimationFrame(sliderTimer); sliderTimer = null; }
-                sliderTimer = requestAnimationFrame(() => {
-                    if (!isTransitioning && !isPaused) {
-                        const nextIdx = getRandomImageIndex(currentIndex);
-                        const effect = getRandomEffect();
-                        slideTo(nextIdx, effect);
+
+                const touch = e.changedTouches[0];
+                const deltaX = touch.clientX - touchStartX;
+                const deltaY = touch.clientY - touchStartY;
+
+                if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+                    touchHandled = true;
+                    if (deltaX < 0) {
+                        const nextIdx = (state.currentIndex + 1) % IMAGES.length;
+                        manualGoTo(nextIdx);
+                    } else {
+                        const prevIdx = (state.currentIndex - 1 + IMAGES.length) % IMAGES.length;
+                        manualGoTo(prevIdx);
                     }
-                });
-            }
+                }
 
-            function clearAllTimers() {
-                if (sliderTimer) { cancelAnimationFrame(sliderTimer); sliderTimer = null; }
-                if (animationTimer) { clearTimeout(animationTimer); animationTimer = null; }
-                if (pauseTimer) { clearTimeout(pauseTimer); pauseTimer = null; }
-                if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; }
-            }
+                touchStartX = 0;
+                touchStartY = 0;
+                isSwiping = false;
 
-            function stopSlider() { isPaused = true; clearAllTimers(); }
-            function resumeSlider() { isPaused = false; if (!isTransitioning) { scheduleNextSlide(); } }
+                setTimeout(() => {
+                    if (!state.isTransitioning) resumeSlider();
+                }, 300);
+            }, { passive: true });
 
-            function onDotClick(index) {
-                if (index === currentIndex || isTransitioning) return;
-                stopSlider();
-                const effect = getRandomEffect();
-                slideTo(index, effect).then(() => {
-                    if (!isTransitioning && !isPaused) {
-                        setTimeout(() => {
-                            if (!isTransitioning && !isPaused) { scheduleNextSlide(); }
-                        }, 100);
+            // Mouse Events
+            let mouseInside = false;
+            sliderContainer.addEventListener('mouseenter', () => {
+                mouseInside = true;
+                pauseSlider();
+            });
+            sliderContainer.addEventListener('mouseleave', () => {
+                mouseInside = false;
+                setTimeout(() => {
+                    if (!mouseInside && !state.isTransitioning) {
+                        resumeSlider();
                     }
-                });
-            }
+                }, 300);
+            });
 
-            const container = document.querySelector('.slider-container');
-            if (container) {
-                container.addEventListener('mouseenter', stopSlider);
-                container.addEventListener('mouseleave', resumeSlider);
-
-                let touchStartX = 0, touchStartY = 0;
-                container.addEventListener('touchstart', (e) => {
-                    const touch = e.touches[0];
-                    touchStartX = touch.clientX;
-                    touchStartY = touch.clientY;
-                    stopSlider();
-                }, { passive: true });
-                container.addEventListener('touchmove', (e) => { e.preventDefault(); }, { passive: false });
-                container.addEventListener('touchend', (e) => {
-                    const touch = e.changedTouches[0];
-                    const deltaX = touch.clientX - touchStartX;
-                    const deltaY = touch.clientY - touchStartY;
-                    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
-                        stopSlider();
-                        const nextIdx = getRandomImageIndex(currentIndex);
-                        const effect = getRandomEffect();
-                        slideTo(nextIdx, effect).then(() => {
-                            if (!isTransitioning && !isPaused) {
-                                setTimeout(() => scheduleNextSlide(), 200);
-                            }
-                        });
-                    } else { resumeSlider(); }
-                }, { passive: true });
-            }
-
+            // Keyboard Events
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                if (e.key === 'ArrowLeft') {
                     e.preventDefault();
-                    stopSlider();
-                    const nextIdx = getRandomImageIndex(currentIndex);
-                    const effect = getRandomEffect();
-                    slideTo(nextIdx, effect).then(() => {
-                        if (!isTransitioning && !isPaused) {
-                            setTimeout(() => scheduleNextSlide(), 200);
-                        }
-                    });
+                    const prevIdx = (state.currentIndex - 1 + IMAGES.length) % IMAGES.length;
+                    manualGoTo(prevIdx);
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    const nextIdx = (state.currentIndex + 1) % IMAGES.length;
+                    manualGoTo(nextIdx);
                 }
             });
 
+            // Visibility Change
             document.addEventListener('visibilitychange', () => {
-                if (document.hidden) { stopSlider(); } else { resumeSlider(); }
+                if (document.hidden) {
+                    pauseSlider();
+                } else {
+                    setTimeout(() => {
+                        if (!state.isPaused && !state.isTransitioning && state.isInitialized) {
+                            resumeSlider();
+                        }
+                    }, 500);
+                }
             });
 
-            async function init() {
-                buildDots();
+            // Init
+            function init() {
                 layerA.src = IMAGES[0];
                 layerA.classList.add('active');
                 layerA.style.opacity = '1';
                 layerA.style.transform = 'translateZ(0) scale(1.08)';
+
                 layerB.src = '';
                 layerB.classList.remove('active');
                 layerB.style.opacity = '0';
                 layerB.style.transform = 'translateZ(0) scale(1.08)';
-                activeLayer = layerA;
-                passiveLayer = layerB;
-                currentIndex = 0;
+
+                state.activeLayer = layerA;
+                state.passiveLayer = layerB;
+                state.currentIndex = 0;
+
+                buildDots();
                 updateDots(0);
 
-                await Promise.all(IMAGES.map(src => {
+                Promise.all(IMAGES.map(src => {
                     return new Promise((resolve) => {
                         const img = new Image();
                         img.onload = resolve;
                         img.onerror = resolve;
                         img.src = src;
                     });
-                }));
-
-                await new Promise(resolve => setTimeout(resolve, 300));
-                const initialEffect = getRandomEffect();
-                applyCinematicEffect(activeLayer, initialEffect);
-
-                animationTimer = setTimeout(() => {
-                    holdTimer = setTimeout(() => {
-                        isTransitioning = false;
-                        if (!isPaused) {
-                            setTimeout(() => {
-                                if (!isTransitioning && !isPaused) { scheduleNextSlide(); }
-                            }, 50);
-                        }
-                    }, CONFIG.holdAfterAnimation);
-                }, CONFIG.animationDuration);
+                })).then(() => {
+                    setTimeout(() => {
+                        state.isInitialized = true;
+                        const initialEffect = getRandomEffect();
+                        applyCinematicEffect(state.activeLayer, initialEffect);
+                        state.timers.effect = setTimeout(() => {
+                            if (!state.isPaused && state.isInitialized) {
+                                startAutoplay(500);
+                            }
+                        }, CONFIG.animationDuration + CONFIG.holdAfterAnimation);
+                    }, 300);
+                });
             }
-
-            init();
 
             window.addEventListener('beforeunload', () => {
                 clearAllTimers();
-                if (sliderTimer) { cancelAnimationFrame(sliderTimer); sliderTimer = null; }
             });
+
+            init();
 
             // ============================================================
             // SCROLL EFFECT - فقط برای سایه هدر
