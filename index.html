@@ -2250,7 +2250,7 @@
     </footer>
 
     <!-- ============================================================
-    SCRIPTS
+    SCRIPTS - FIXED VERSION
     ============================================================ -->
     <script>
         (function() {
@@ -2312,7 +2312,7 @@
             });
 
             // ============================================================
-            // SLIDER
+            // SLIDER - FIXED: مشکل قفل شدن after first manual click
             // ============================================================
             const CONFIG = {
                 crossFadeDuration: 1100,
@@ -2355,6 +2355,7 @@
             let animationTimer = null;
             let pauseTimer = null;
             let holdTimer = null;
+            let isInitialized = false;
 
             function buildDots() {
                 dotsContainer.innerHTML = '';
@@ -2364,7 +2365,13 @@
                     dot.dataset.index = index;
                     dot.setAttribute('role', 'tab');
                     dot.setAttribute('aria-label', 'اسلاید ' + (index + 1));
-                    dot.addEventListener('click', () => onDotClick(index));
+                    dot.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const idx = parseInt(this.dataset.index);
+                        if (idx !== currentIndex && !isTransitioning) {
+                            manualSlideTo(idx);
+                        }
+                    });
                     dotsContainer.appendChild(dot);
                 });
             }
@@ -2425,6 +2432,7 @@
             function prepareNextImage(index) {
                 return new Promise((resolve) => {
                     const img = new Image();
+                    img.crossOrigin = 'anonymous';
                     img.onload = () => {
                         passiveLayer.src = IMAGES[index];
                         passiveLayer.onload = () => {
@@ -2463,43 +2471,91 @@
                 });
             }
 
+            // ============================================================
+            // FIX: اصلاح slideTo برای اطمینان از آزادسازی isTransitioning
+            // ============================================================
             async function slideTo(nextIndex, effectClass) {
                 if (isTransitioning) return;
                 if (nextIndex === undefined) { nextIndex = getRandomImageIndex(currentIndex); }
+                if (nextIndex === currentIndex) return;
                 if (effectClass === undefined) { effectClass = getRandomEffect(); }
+
                 isTransitioning = true;
                 clearAllTimers();
+
                 try {
                     await prepareNextImage(nextIndex);
                     await performCrossFade();
                     currentIndex = nextIndex;
                     updateDots(currentIndex);
+
                     await new Promise((resolve) => { pauseTimer = setTimeout(resolve, CONFIG.initialPause); });
                     applyCinematicEffect(activeLayer, effectClass);
-                    animationTimer = setTimeout(() => {
-                        holdTimer = setTimeout(() => {
-                            isTransitioning = false;
-                            if (!isPaused) { scheduleNextSlide(); }
-                        }, CONFIG.holdAfterAnimation);
-                    }, CONFIG.animationDuration);
+
+                    await new Promise((resolve) => {
+                        animationTimer = setTimeout(() => {
+                            holdTimer = setTimeout(() => {
+                                resolve();
+                            }, CONFIG.holdAfterAnimation);
+                        }, CONFIG.animationDuration);
+                    });
+
+                    isTransitioning = false;
+
+                    if (!isPaused && isInitialized) {
+                        scheduleNextSlide();
+                    }
+
                 } catch (error) {
                     console.error('Error in slideTo:', error);
                     isTransitioning = false;
+                    if (!isPaused && isInitialized) {
+                        setTimeout(() => scheduleNextSlide(), 500);
+                    }
                 }
             }
 
+            // ============================================================
+            // manualSlideTo: برای کلیک کاربر روی دات‌ها
+            // ============================================================
+            function manualSlideTo(index) {
+                if (isTransitioning || index === currentIndex) return;
+                
+                // توقف موقت اتوپلی
+                isPaused = true;
+                clearAllTimers();
+                
+                // رفتن به اسلاید انتخابی
+                slideTo(index, getRandomEffect()).then(() => {
+                    // بعد از اتمام، با تاخیر resume کن
+                    setTimeout(() => {
+                        isPaused = false;
+                        if (!isTransitioning && isInitialized) {
+                            scheduleNextSlide();
+                        }
+                    }, 1500);
+                });
+            }
+
+            // ============================================================
+            // Auto Play
+            // ============================================================
             function scheduleNextSlide() {
-                if (isTransitioning || isPaused) {
+                if (isTransitioning || isPaused || !isInitialized) {
                     if (isTransitioning) {
                         setTimeout(() => {
-                            if (!isTransitioning && !isPaused) { scheduleNextSlide(); }
+                            if (!isTransitioning && !isPaused && isInitialized) {
+                                scheduleNextSlide();
+                            }
                         }, 100);
                     }
                     return;
                 }
+                
                 if (sliderTimer) { cancelAnimationFrame(sliderTimer); sliderTimer = null; }
+                
                 sliderTimer = requestAnimationFrame(() => {
-                    if (!isTransitioning && !isPaused) {
+                    if (!isTransitioning && !isPaused && isInitialized) {
                         const nextIdx = getRandomImageIndex(currentIndex);
                         const effect = getRandomEffect();
                         slideTo(nextIdx, effect);
@@ -2514,70 +2570,108 @@
                 if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; }
             }
 
-            function stopSlider() { isPaused = true; clearAllTimers(); }
-            function resumeSlider() { isPaused = false; if (!isTransitioning) { scheduleNextSlide(); } }
-
-            function onDotClick(index) {
-                if (index === currentIndex || isTransitioning) return;
-                stopSlider();
-                const effect = getRandomEffect();
-                slideTo(index, effect).then(() => {
-                    if (!isTransitioning && !isPaused) {
-                        setTimeout(() => {
-                            if (!isTransitioning && !isPaused) { scheduleNextSlide(); }
-                        }, 100);
-                    }
-                });
+            function stopSlider() { 
+                isPaused = true; 
+                clearAllTimers(); 
+            }
+            
+            function resumeSlider() { 
+                isPaused = false; 
+                if (!isTransitioning && isInitialized) { 
+                    setTimeout(() => scheduleNextSlide(), 300);
+                } 
             }
 
+            // ============================================================
+            // EVENT LISTENERS
+            // ============================================================
             const container = document.querySelector('.slider-container');
             if (container) {
                 container.addEventListener('mouseenter', stopSlider);
                 container.addEventListener('mouseleave', resumeSlider);
 
                 let touchStartX = 0, touchStartY = 0;
+                let isSwiping = false;
+                
                 container.addEventListener('touchstart', (e) => {
                     const touch = e.touches[0];
                     touchStartX = touch.clientX;
                     touchStartY = touch.clientY;
+                    isSwiping = false;
                     stopSlider();
                 }, { passive: true });
-                container.addEventListener('touchmove', (e) => { e.preventDefault(); }, { passive: false });
+                
+                container.addEventListener('touchmove', (e) => {
+                    if (!touchStartX) return;
+                    const touch = e.touches[0];
+                    const deltaX = touch.clientX - touchStartX;
+                    const deltaY = touch.clientY - touchStartY;
+                    
+                    if (Math.abs(deltaX) > 20 || Math.abs(deltaY) > 20) {
+                        isSwiping = true;
+                    }
+                    
+                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 30) {
+                        e.preventDefault();
+                    }
+                }, { passive: false });
+                
                 container.addEventListener('touchend', (e) => {
+                    if (!touchStartX || !isSwiping) {
+                        touchStartX = 0;
+                        touchStartY = 0;
+                        isSwiping = false;
+                        resumeSlider();
+                        return;
+                    }
+
                     const touch = e.changedTouches[0];
                     const deltaX = touch.clientX - touchStartX;
                     const deltaY = touch.clientY - touchStartY;
+
                     if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
-                        stopSlider();
-                        const nextIdx = getRandomImageIndex(currentIndex);
-                        const effect = getRandomEffect();
-                        slideTo(nextIdx, effect).then(() => {
-                            if (!isTransitioning && !isPaused) {
-                                setTimeout(() => scheduleNextSlide(), 200);
-                            }
-                        });
-                    } else { resumeSlider(); }
+                        if (deltaX < 0) {
+                            const nextIdx = (currentIndex + 1) % IMAGES.length;
+                            if (!isTransitioning) manualSlideTo(nextIdx);
+                        } else {
+                            const prevIdx = (currentIndex - 1 + IMAGES.length) % IMAGES.length;
+                            if (!isTransitioning) manualSlideTo(prevIdx);
+                        }
+                    } else {
+                        resumeSlider();
+                    }
+
+                    touchStartX = 0;
+                    touchStartY = 0;
+                    isSwiping = false;
                 }, { passive: true });
             }
 
+            // ============================================================
+            // KEYBOARD
+            // ============================================================
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                if (e.key === 'ArrowLeft') {
                     e.preventDefault();
-                    stopSlider();
-                    const nextIdx = getRandomImageIndex(currentIndex);
-                    const effect = getRandomEffect();
-                    slideTo(nextIdx, effect).then(() => {
-                        if (!isTransitioning && !isPaused) {
-                            setTimeout(() => scheduleNextSlide(), 200);
-                        }
-                    });
+                    const prevIdx = (currentIndex - 1 + IMAGES.length) % IMAGES.length;
+                    if (!isTransitioning) manualSlideTo(prevIdx);
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    const nextIdx = (currentIndex + 1) % IMAGES.length;
+                    if (!isTransitioning) manualSlideTo(nextIdx);
                 }
             });
 
+            // ============================================================
+            // VISIBILITY
+            // ============================================================
             document.addEventListener('visibilitychange', () => {
                 if (document.hidden) { stopSlider(); } else { resumeSlider(); }
             });
 
+            // ============================================================
+            // INIT
+            // ============================================================
             async function init() {
                 buildDots();
                 layerA.src = IMAGES[0];
@@ -2603,19 +2697,18 @@
                 }));
 
                 await new Promise(resolve => setTimeout(resolve, 300));
+                
                 const initialEffect = getRandomEffect();
                 applyCinematicEffect(activeLayer, initialEffect);
 
-                animationTimer = setTimeout(() => {
-                    holdTimer = setTimeout(() => {
-                        isTransitioning = false;
-                        if (!isPaused) {
-                            setTimeout(() => {
-                                if (!isTransitioning && !isPaused) { scheduleNextSlide(); }
-                            }, 50);
-                        }
-                    }, CONFIG.holdAfterAnimation);
-                }, CONFIG.animationDuration);
+                isInitialized = true;
+
+                // شروع اتوپلی بعد از افکت اولیه
+                setTimeout(() => {
+                    if (!isPaused && isInitialized) {
+                        scheduleNextSlide();
+                    }
+                }, CONFIG.animationDuration + CONFIG.holdAfterAnimation + 500);
             }
 
             init();
